@@ -1,0 +1,22 @@
+{% extends "blog/base.html" %}
+
+{% load static %}
+
+{% block headerimg %}
+  {% static '/blog/img/post-bg.jpg' %}
+{% endblock %}
+
+{% block headertitle %}{{post.title}}{% endblock %}
+{% block headersubtitle %}{{post.description}}{% endblock %}
+
+{% block content %}
+    <h1 class="post-title">{{ post.title }}</h1>
+    <h4>{{ post.published_date }}</h4>
+    <p>{{ post.text|safe|linebreaksbr }}</p>
+
+    {% if user.is_authenticated %}
+      <p><a href="{% url 'post_edit' pk=post.pk %}">Edit Post</a></p>
+      <p><a href="{% url 'post_remove' pk=post.pk %}">Delete Post</a></p>
+    {% endif %}
+
+{% endblock %}

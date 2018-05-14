@@ -1,0 +1,42 @@
+{% extends "blog/base.html" %}
+
+{% load static %}
+{% block headerimg %}
+  {% static '/blog/img/contact-bg.jpg' %}
+{% endblock %}
+
+{% block headertitle %}Contact Me{% endblock %}
+{% block headersubtitle %}Have questions?{% endblock %}
+{% block content %}
+  {% if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+        <li class="{{ message.tags }}">{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+  <p>Want to get in touch with me?  Fill out this form to send me a message,
+      and I will get back to you as soon as possible.
+  </p>
+  <form role="form" action="" method="post">
+    {% csrf_token %}
+    {% for field in form %}
+      {# {% if field.name != 'bot_catcher' %}#}
+      <div class="row control-group">
+        <div class="form-group col-xs-12 floating-label-form-group controls">
+          {{ field.errors}}
+          {{ field.label_tag }} {{ field }}
+          <p class="help-block text-danger"></p>
+        </div>
+      </div>
+      {# {% endif %}#}
+    {% endfor %}
+    <br>
+    <div class="row">
+      <div class="form-group col-xs-12">
+        <button class="btn btn-default" type="submit">Submit</button>
+      </div>
+    </div>
+  </form>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "blog/base.html" %}
+
+{% load static %}
+
+{% block headerimg %}
+  {% static '/blog/img/post-bg.jpg' %}
+{% endblock %}
+
+{% block headertitle %}Create Post{% endblock %}
+{% block headersubtitle %}{% endblock %}
+{% block content %}
+  <form method="POST" class="post-form">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit" class="save btn btn-default">Save</button>
+  </form>
+
+{% endblock %}

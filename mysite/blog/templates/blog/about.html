@@ -1,0 +1,17 @@
+{% extends "blog/base.html" %}
+
+{% load static %}
+{% block headerimg %}
+  {% static '/blog/img/about-bg.jpg' %}
+{% endblock %}
+
+{% block headertitle%}About Me{% endblock %}
+{% block headersubtitle %}This is what I do.{% endblock %}
+{% block content %}
+  <h3><p>Hi, I'm Joseph Carpenter.</p>
+    <p>I'm a software developer living in Franklin, Tennessee.
+       I have a degree in Computer Science from the University of Tennessee at Martin
+       and a degree in Business Administration from Middle Tennessee State University.</p>
+    <p>This site is a place for me to share my thoughts and things I find interesting.</p>
+  </h3>
+{% endblock %}

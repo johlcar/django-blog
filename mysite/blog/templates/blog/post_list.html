@@ -1,0 +1,42 @@
+{% extends "blog/base.html" %}
+
+{% load static %}
+
+{% block headerimg %}
+  {% static '/blog/img/home-bg.jpg' %}
+{% endblock %}
+
+{% block headertitle %}Joseph Carpenter{% endblock %}
+{% block headersubtitle %}Welcome{% endblock %}
+
+{% block content %}
+  {% for post in posts %}
+    <div class="post-preview">
+      <a href="{% url 'post_detail' pk=post.pk %}">
+        <h2 class="post-title">
+          {{ post.title }}
+        </h2>
+        <h3 class="post-subtitle">
+          {{ post.description }}
+        </h3>
+      </a>
+      <p class="post-meta">Posted on {{ post.published_date|date:"D M d Y"}}</span></p>
+    </div>
+    <hr>
+  {% endfor %}
+
+  {% if is_paginated %}
+    <ul class="pager">
+      {% if page_obj.has_previous %}
+        <li class="previous">
+          <a href="?page={{ page_obj.previous_page_number }}">Older Posts &rarr;</a>
+        </li>
+      {% endif %}
+      {% if page_obj.has_next %}
+        <li class="next">
+          <a href="?page={{ page_obj.next_page_number }}">Newer Posts &rarr;</a>
+        </li>
+      {% endif %}
+    </ul>
+  {% endif %}
+{% endblock %}
